@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from requests import get
 from bs4 import BeautifulSoup
 from datetime import date
@@ -15,9 +16,10 @@ def generate_udemy():
     #    data = f.read()
     soup = BeautifulSoup(data.text, 'html.parser')
     x = soup.find_all("div", class_="td-module-meta-info")
+
     for i,elem in enumerate(x):
         print('*'*50,'\n','*'*50,'\n',' '*15,f'RETRIVING COUPON: {i+1}/{len(x)}','\n','*'*50,'\n','*'*50)
-        title = elem.find(href=True)['title']
+        title = elem.find(href=True)['title'].split('|')[0]
         href = elem.find(href=True)['href']
         coupon_url = scrap_udemy_coupon(href).strip()
         date_ = elem.find(class_= 'entry-date updated td-module-date')['datetime'][:10]
@@ -25,7 +27,6 @@ def generate_udemy():
         if date_ == str(date.today()):
             coupons[title] = coupon_url
     return coupons
-    
-        
+
 
 
