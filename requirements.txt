@@ -1,0 +1,4 @@
+reportlab
+selenium
+requests
+beautifulsoup4
