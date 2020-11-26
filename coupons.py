@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-from requests import get
+from requests import get 
 from bs4 import BeautifulSoup
 from datetime import date
 import os
+from init import utils
+
 def scrap_udemy_coupon(url):
     site_data = get(url)
     soup = BeautifulSoup(site_data.text, 'html.parser')
@@ -23,7 +25,7 @@ def generate_udemy():
         href = elem.find(href=True)['href']
         coupon_url = scrap_udemy_coupon(href).strip()
         date_ = elem.find(class_= 'entry-date updated td-module-date')['datetime'][:10]
-        os.system('clear')
+        utils.clrscr()
         if date_ == str(date.today()):
             coupons[title] = coupon_url
     return coupons
