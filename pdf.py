@@ -6,13 +6,12 @@ from reportlab.lib.pagesizes import inch
 from reportlab.lib.styles import getSampleStyleSheet,ParagraphStyle
 from datetime import date
 from shutil import rmtree
+from init import utils
 
-
-class pdf():
+class PDF():
 
   def __init__(self):
-    if not os.path.isdir('temp'):
-      os.mkdir('temp')
+    utils.create_folder('temp')
     self.today = str(date.today())
     self.format_imgs()
     
@@ -31,9 +30,10 @@ class pdf():
 
 
   def create_pdf(self, course_list):
-    '''A dictionary containg the courses registered has to be passed'''
 
-    report = SimpleDocTemplate(f"{self.today}.pdf") #Initializing the filename
+    '''A dictionary containg the courses registered has to be passed'''
+    filename = os.path.join(utils.get_pdf_path(), f"{self.today}.pdf")
+    report = SimpleDocTemplate(filename) #Initializing the filename
     styles = getSampleStyleSheet()
     report_title = Paragraph(f"Udemy Course Registration Report: {self.today} \n\n", styles["h1"])
     line_break = Paragraph('<br/><br/><br/>', ParagraphStyle('body')) #The breakline to sepatate title and table
@@ -80,5 +80,4 @@ class pdf():
     report.build(elements)
     rmtree('temp')
 
-
-
+pdf = PDF()
