@@ -25,7 +25,7 @@ class PDF():
 
   def format_imgs(self):
       img_list = os.listdir(os.path.join(os.getcwd(),'temp'))
-      self.img_list = [os.path.join(os.getcwd(),'temp',name) for name in img_list]
+      self.img_list = [os.path.join(os.getcwd(),'temp',name) for name in img_list if name.endswith('.png')]
       [self.crop_img(img) for img in self.img_list] # Why should i waste time writing multiple lines?
 
 
@@ -79,5 +79,3 @@ class PDF():
     #Buiding the PDF from the wishlist
     report.build(elements)
     rmtree('temp')
-
-pdf = PDF()
