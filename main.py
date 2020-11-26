@@ -32,4 +32,4 @@ pdf.create_pdf(reg_data)
 utils.clrscr()
 for i, j in reg_data.items():
   print(i, " : ",j.split('|')[0])
-print('\nCheck the report generated for more details (saved in Documents>Udemy Report')
+print('\nCheck the report generated for more details (saved in Documents>Udemy Report)')

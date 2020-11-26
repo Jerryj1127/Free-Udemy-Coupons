@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.webdriver.support import expected_conditions as EC 
 import os
-
+from creds import Creds #I know I know...I'm being stupid 
 
 def browser(driver, name, url):
     driver.get(url)
