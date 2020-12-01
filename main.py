@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import os
+import sys
 import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -24,6 +25,7 @@ if login(browser, Creds):
 else:
     print('Theres an error with the login\n Fix the issue and try again later')
     browser.quit()
+    sys.exit("Login Error")
 
 #creating pdf
 pdf = PDF()
